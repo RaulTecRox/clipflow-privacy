@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Authorization — ClipFlow</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #7C3AED, #EC4899);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      color: #fff;
+    }
+    .card {
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(16px);
+      border-radius: 16px; padding: 32px; max-width: 480px; width: 90%;
+      text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    h1 { font-size: 1.5em; margin-bottom: 12px; }
+    .icon { font-size: 48px; margin-bottom: 16px; }
+    .code-box {
+      background: rgba(0,0,0,0.3); border: 2px dashed rgba(255,255,255,0.4);
+      border-radius: 10px; padding: 16px; margin: 20px 0;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 1.2em; word-break: break-all; user-select: all;
+    }
+    .code-box:empty::after { content: "No authorization code found in URL. Check the link and try again."; font-style: italic; opacity: 0.7; }
+    .hint { opacity: 0.8; font-size: 0.9em; margin-top: 12px; }
+    .error { color: #fca5a5; font-size: 0.9em; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">✅</div>
+    <h1>Authorization Successful</h1>
+    <p>Copy the code below and paste it into ClipFlow:</p>
+    <div class="code-box" id="code"></div>
+    <p class="hint">Return to ClipFlow and paste this code when prompted.</p>
+    <div class="error" id="error" style="display:none"></div>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const error = params.get('error');
+    const errorDesc = params.get('error_description');
+    if (code) {
+      document.getElementById('code').textContent = code;
+    }
+    if (error) {
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error').textContent = 'Error: ' + (errorDesc || error);
+    }
+  </script>
+</body>
+</html>
