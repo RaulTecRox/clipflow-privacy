@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — ClipFlow</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.7; color: #222; }
+    h1 { font-size: 1.8em; margin-bottom: 8px; }
+    h2 { font-size: 1.3em; margin-top: 32px; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px; }
+    .updated { color: #666; font-size: 0.9em; margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <h1>Política de Privacidade</h1>
+  <p class="updated">Última atualização: 20 de junho de 2026</p>
+
+  <p>O <strong>ClipFlow</strong> é uma ferramenta de automação de conteúdo que utiliza a API oficial do TikTok (Content Posting API) para publicar vídeos em nome de criadores autorizados.</p>
+
+  <h2>1. Dados que coletamos</h2>
+  <p>O ClipFlow <strong>não coleta, armazena ou compartilha dados pessoais de usuários finais</strong>. Os únicos dados processados são:</p>
+  <ul>
+    <li><strong>Token de acesso OAuth 2.0:</strong> gerado pelo TikTok após autorização explícita do criador, armazenado localmente e usado exclusivamente para autenticar chamadas à API de publicação.</li>
+    <li><strong>Arquivos de vídeo:</strong> enviados diretamente aos servidores do TikTok via upload chunked (FILE_UPLOAD). Nenhum vídeo é retido após a confirmação de publicação.</li>
+    <li><strong>Metadados da postagem:</strong> título/descrição fornecidos pelo criador, enviados junto com o vídeo na chamada de init.</li>
+  </ul>
+
+  <h2>2. Como usamos os dados</h2>
+  <p>Todos os dados são usados <strong>exclusivamente</strong> para:</p>
+  <ul>
+    <li>Autenticar o criador junto à API do TikTok (OAuth 2.0)</li>
+    <li>Iniciar, fazer upload e confirmar a publicação de vídeos na conta TikTok do criador autorizado</li>
+    <li>Consultar informações do criador (avatar, username) para exibição na interface de confirmação pré-postagem</li>
+  </ul>
+  <p>Nenhum dado é utilizado para publicidade, análise de terceiros, treinamento de IA ou qualquer outra finalidade.</p>
+
+  <h2>3. TikTok API e Cookies</h2>
+  <p>O ClipFlow integra-se com a API oficial do TikTok (Content Posting API). O TikTok pode utilizar cookies e tecnologias de rastreamento próprias durante o fluxo de autorização OAuth. Consulte a <a href="https://www.tiktok.com/legal/privacy-policy" target="_blank">Política de Privacidade do TikTok</a> para detalhes.</p>
+  <p>O ClipFlow <strong>não utiliza cookies, pixels de rastreamento ou qualquer tecnologia de fingerprinting</strong> própria.</p>
+
+  <h2>4. Armazenamento e segurança</h2>
+  <ul>
+    <li>Tokens OAuth são armazenados em arquivo local criptografado no dispositivo do criador.</li>
+    <li>Nenhum dado é enviado a servidores de terceiros além dos endpoints oficiais da API do TikTok (<code>open.tiktokapis.com</code> e <code>open-upload.tiktokapis.com</code>).</li>
+    <li>Vídeos são transmitidos diretamente ao TikTok — não há armazenamento intermediário em nuvem.</li>
+  </ul>
+
+  <h2>5. Compartilhamento de dados</h2>
+  <p>O ClipFlow <strong>não vende, aluga ou compartilha</strong> dados com terceiros. A única entidade que recebe dados é o TikTok, como parte necessária da funcionalidade de publicação.</p>
+
+  <h2>6. Consentimento e revogação</h2>
+  <p>O uso da API requer autorização explícita do criador via OAuth 2.0. O criador pode revogar o acesso a qualquer momento:</p>
+  <ul>
+    <li>Pelo painel de apps autorizados do TikTok (Configurações → Segurança → Apps Autorizados)</li>
+    <li>Ou entrando em contato pelo e-mail abaixo</li>
+  </ul>
+
+  <h2>7. Contato</h2>
+  <p>Dúvidas sobre esta política ou sobre o tratamento de dados:</p>
+  <p>📧 <strong>clipflow.privacidade@gmail.com</strong></p>
+  <p>Responsável: Raul Guimarães</p>
+</body>
+</html>
