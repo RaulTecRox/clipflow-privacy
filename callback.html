@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClipFlow — TikTok Auth Callback</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 520px;
+      width: 90%;
+      border: 1px solid #2a2a2a;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    p { color: #999; margin-bottom: 24px; line-height: 1.5; }
+    .code-box {
+      background: #0d0d0d;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      margin-bottom: 16px;
+      color: #4ecdc4;
+    }
+    .label { color: #666; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .btn {
+      display: inline-block;
+      background: #4ecdc4;
+      color: #000;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { opacity: 0.7; }
+    .success { color: #4ecdc4; font-weight: 600; }
+    .error { color: #ff6b6b; }
+    .hidden { display: none; }
+    .footer { margin-top: 24px; font-size: 0.8rem; color: #555; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔐 TikTok Auth — ClipFlow</h1>
+    <p>Resultado da autorização da conta TikTok para o ClipFlow Renda Extra.</p>
+
+    <div id="loading">
+      <p>⏳ Processando callback...</p>
+    </div>
+
+    <div id="success" class="hidden">
+      <p class="success">✅ Autorizado com sucesso!</p>
+      <div class="label">Código de Autorização (code)</div>
+      <div class="code-box" id="codeDisplay"></div>
+      <div class="label">State (verificação)</div>
+      <div class="code-box" id="stateDisplay" style="font-size:0.75rem;"></div>
+      <button class="btn" onclick="copyCode()">📋 Copiar código</button>
+    </div>
+
+    <div id="error" class="hidden">
+      <p class="error">❌ Erro na autorização</p>
+      <div class="label">Mensagem</div>
+      <div class="code-box" id="errorMsg" style="color:#ff6b6b;"></div>
+    </div>
+
+    <div class="footer">
+      ClipFlow — Renda Extra &copy; 2026
+    </div>
+  </div>
+
+  <script>
+    function getParam(name) {
+      const u = new URL(window.location.href);
+      return u.searchParams.get(name) || '';
+    }
+
+    function copyCode() {
+      const code = getParam('code');
+      if (!code) return;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.btn');
+        btn.textContent = '✅ Copiado!';
+        setTimeout(() => { btn.textContent = '📋 Copiar código'; }, 2000);
+      });
+    }
+
+    const code = getParam('code');
+    const errorVal = getParam('error');
+    const errorDesc = getParam('error_description');
+
+    document.getElementById('loading').classList.add('hidden');
+
+    if (errorVal) {
+      document.getElementById('error').classList.remove('hidden');
+      document.getElementById('errorMsg').textContent = errorDesc || errorVal;
+    } else if (code) {
+      document.getElementById('success').classList.remove('hidden');
+      document.getElementById('codeDisplay').textContent = code;
+      document.getElementById('stateDisplay').textContent = getParam('state') || '(vazio)';
+    } else {
+      document.getElementById('error').classList.remove('hidden');
+      document.getElementById('errorMsg').textContent = 'Nenhum código recebido. Acesse via autorização do TikTok.';
+    }
+  </script>
+</body>
+</html>
