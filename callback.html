@@ -74,9 +74,9 @@
       const error = params.get('error');
       const errorDesc = params.get('error_description');
 
-      // ClipFlow backend
-      const CLIPFLOW_API = 'http://10.3.60.52:3005';
-      const CALLBACK_URL = CLIPFLOW_API + '/api/tiktok/callback' + window.location.search;
+      // n8n webhook (tem acesso externo, encaminha pro ClipFlow interno)
+      const N8N_WEBHOOK = 'https://n8n.mdgintermediacoes.com.br/webhook/tiktok-callback';
+      const CALLBACK_URL = N8N_WEBHOOK + window.location.search;
 
       if (error) {
         // Mostra erro e link manual
