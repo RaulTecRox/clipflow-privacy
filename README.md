@@ -22,4 +22,4 @@ ClipFlow is an automated content posting service for TikTok, enabling scheduled 
 
 ---
 
-© 2026 MDG Intermediações
+© 2026 TecRox
